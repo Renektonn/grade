@@ -3,35 +3,9 @@
 import java.util.Scanner;
 class Main {
   
-  public static void main(String[] args) {
-    Scanner cin=new Scanner (System.in);
+  
+  static void output(Student [] numStu , int num){
     
-    Student [] numStu = new Student [10+1];
-    int [] rankStu = new int [10+1];
-    
-    for(int i = 1;i <= 10;i++){
-      int Chinese=cin.nextInt();
-      int Math=cin.nextInt();
-      int English=cin.nextInt();
-      numStu[i] = new Student(Chinese , Math , English);
-    }
-
-    for(int i = 1;i <= 10;i++){
-      rankStu[i]=i;
-    }
-
-    for(int i = 1;i <= 10;i++){ // compute rank
-      for(int j = i + 1;j <= 10 ;j++){
-        if(numStu[i].average < numStu[j].average){
-          int tem = rankStu[i];
-          rankStu[i] = rankStu[j];
-          rankStu[j] = tem ;
-        }
-      }
-    }
-    
-    
-
     System.out.printf("%-10s","num");
     System.out.printf("%-10s","Chinese");
     System.out.printf("%-10s","Math");
@@ -40,15 +14,36 @@ class Main {
     System.out.println();
 
     
-    for(int i = 1;i <= 10;i++){
-      int j=rankStu[i];
-      System.out.printf("%10d",j);
-      System.out.printf("%10d",numStu[j].Chinese);
-      System.out.printf("%10d",numStu[j].Math);
-      System.out.printf("%10d",numStu[j].English);
-      System.out.printf("%10.2f",numStu[j].average);
+    for(int i = 1;i <= num;i++){
+      System.out.printf("%10d",i);
+      System.out.printf("%10d",numStu[i].Chinese);
+      System.out.printf("%10d",numStu[i].Math);
+      System.out.printf("%10d",numStu[i].English);
+      System.out.printf("%10.2f",numStu[i].average);
       System.out.println();
     }
+  }
+
+  static void input(Student [] numStu , int num){
+    
+    Scanner cin = new Scanner (System.in);
+    for(int i = 1;i <= num;i++){
+      int Chinese = cin.nextInt();
+      int Math    = cin.nextInt();
+      int English = cin.nextInt();
+      numStu[i] = new Student(Chinese , Math , English);
+    }
+  }
+
+  public static void main(String[] args) {
+    
+    
+    Student [] numStu = new Student [10+1];
+    input(numStu,10);
+    output(numStu,10);
+    
+
+    
   }
 
 }
